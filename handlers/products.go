@@ -9,8 +9,6 @@ import (
 	"strconv"
 )
 
-var db *gorm.DB
-
 type Product struct {
 	DB *gorm.DB
 }
@@ -22,7 +20,7 @@ func (p *Product) GetIndex(c *gin.Context) {
 }
 
 func (p *Product) GetProducts(c *gin.Context) {
-	products := model.GetProductsAll(db)
+	products := model.GetProductsAll(p.DB)
 	c.HTML(http.StatusOK, "products.tmpl", gin.H{
 		"products": products,
 	})
