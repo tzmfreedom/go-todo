@@ -33,9 +33,9 @@ func (p *Product) GetProductNew(c *gin.Context) {
 }
 
 func (p *Product) PostProduct(c *gin.Context) {
-	name := c.Query("name")
-	code := c.Query("code")
-	price, _ := strconv.ParseUint(c.Query("price"), 10, 32)
+	name := c.PostForm("name")
+	code := c.PostForm("code")
+	price, _ := strconv.ParseUint(c.PostForm("price"), 10, 32)
 
 	product := model.Product{Name: name, Code: code, Price: uint(price)}
 	p.DB.Create(&product)
