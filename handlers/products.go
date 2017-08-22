@@ -37,7 +37,5 @@ func (p *Product) PostProduct(c *gin.Context) {
 
 	product := model.Product{Name: name, Code: code, Price: uint(price)}
 	p.DB.Create(&product)
-	c.HTML(http.StatusOK, "index.tmpl", gin.H{
-		"title": "Main website",
-	})
+	c.Redirect(http.StatusFound, "/products")
 }
